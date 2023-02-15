@@ -1,0 +1,79 @@
+using System;
+using System.Reflection.Metadata.Ecma335;
+
+
+namespace UnitTestEx;
+    public class Class1
+    {
+        public static double Min(double num1, double num2)
+        {
+            if (num1 < num2) { return num1; }
+            else { return num2; }
+        }
+
+
+        public static double Min(double num1, double num2, double num3)
+        {
+            double min = num1;
+            if (num2 < min) { min = num2; }
+            if (num3 < min) { min = num3; }
+            return min;
+        }
+    }
+
+
+
+
+namespace MyRootLib;
+
+
+ public class Root {
+        /// <summary>
+        /// this method calculates the root
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
+        public static double MyRoot(double number) {
+            double root;
+            root = Math.Sqrt(number);
+
+
+            Console.WriteLine("The square root of " + number + " is " + root);
+            return root;
+        }
+    }
+
+
+
+
+
+using UnitTestEx;
+using Xunit;
+
+
+namespace UnitTestEXTest;
+
+
+public class UnitTest
+{
+    [Fact]
+    public void TestMin6_17()
+    {
+        double expected = 6;
+        double actual = UnitTestEx.Class.Min(17,6);
+
+
+        Assert.Equal(expected,actual);
+    }
+
+
+    [Fact]
+    public void TestMin6_17_3()
+    {
+        double expected = 3;
+        double actual = UnitTestEx.Class.Min(17,6,3);
+
+
+        Assert.Equal(expected,actual);
+    }
+}
